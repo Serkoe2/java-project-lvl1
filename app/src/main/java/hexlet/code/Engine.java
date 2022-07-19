@@ -1,30 +1,32 @@
 package hexlet.code;
 
-import hexlet.code.games.Even;
-import hexlet.code.games.Game;
-
 import java.util.Random;
 import java.util.Scanner;
 
 public class Engine {
-    final Random generator = new Random();
-    final String badMessage = "'%s' is wrong answer ;(. Correct answer was '%s'\nLet's try again, %s!";
-    final String winMessage = "Congratulation %s!";
-    static int needWinsInRow = 3;
+    private Random generator = new Random();
+    private String badMessage = "'%s' is wrong answer ;(. Correct answer was '%s'\nLet's try again, %s!";
+    private String winMessage = "Congratulation %s!";
+    private final int needWinsInRow = 3;
 
-    int maxRandomNumber = 1000;
+    private final int maxRandomNumber = 1000;
 
-    public int getRandom() {
+    public final int getRandom() {
         return generator.nextInt(maxRandomNumber);
     }
 
-    public void startGame(Scanner sc, String playerName, Game game) {
+    public final int getRandom(int max) {
+        return generator.nextInt(max);
+    }
+
+    public final void startGame(Scanner sc, String playerName, Game game) {
         String userAnswer;
         String question;
         String result;
         int leftWinsInRow = this.needWinsInRow;
 
-        System.out.print("Answer 'yes' if number even otherwise answer 'no'.");
+        String gameDescription = game.getDescription();
+        System.out.println(gameDescription);
         while (leftWinsInRow != 0) {
             question = game.getQuestion(this);
             System.out.print("Question: " + question + "\nYour answer: ");

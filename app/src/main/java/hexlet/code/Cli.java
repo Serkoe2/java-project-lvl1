@@ -1,7 +1,7 @@
 package hexlet.code;
 
+import hexlet.code.games.Calc;
 import hexlet.code.games.Even;
-import hexlet.code.games.Game;
 
 import java.util.Scanner;
 
@@ -9,9 +9,10 @@ public class Cli {
 
     public static void menu(Scanner sc, Engine gameEngine) {
         String name;
+        Game game;
         int choice = 0;
 
-        System.out.println("Please enter the game number and press Enter. 1");
+        System.out.println("Please enter the game number and press Enter.");
         System.out.println("1 - Greet\n2 - Even\n3 - Calc\n0 - Exit");
         if (sc.hasNextInt()) {
             choice = sc.nextInt();
@@ -19,18 +20,21 @@ public class Cli {
         sc.nextLine();
         System.out.println("Your choice: " + Integer.toString(choice) + "\n");
         switch (choice) {
-            case 0:
-                return;
             case 1:
                 Cli.greeting(sc);
                 break;
             case 2:
                 name = Cli.greeting(sc);
-                Game game = new Even();
+                game = new Even();
+                gameEngine.startGame(sc, name, game);
+                break;
+            case 3:
+                name = Cli.greeting(sc);
+                game = new Calc();
                 gameEngine.startGame(sc, name, game);
                 break;
             default:
-                break;
+                return;
         }
     }
 

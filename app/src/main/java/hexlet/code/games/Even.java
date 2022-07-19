@@ -1,21 +1,26 @@
 package hexlet.code.games;
 
 import hexlet.code.Engine;
+import hexlet.code.Game;
 
-import java.util.Scanner;
-
-public class Even implements Game{
+public class Even implements Game {
 
     @Override
-    public String getQuestion(Engine gameEngine) {
+    public final String getDescription() {
+        return  "Answer 'yes' if number even otherwise answer 'no'.";
+    }
+
+    @Override
+    public final String getQuestion(Engine gameEngine) {
         return String.valueOf(gameEngine.getRandom());
     }
 
     @Override
-    public String getAnswer(String question) {
+    public final String getAnswer(String question) {
         int number = Integer.parseInt(question);
-        if (number % 2 == 0)
+        if (number % 2 == 0) {
             return "yes";
+        }
         return "no";
     }
 }
